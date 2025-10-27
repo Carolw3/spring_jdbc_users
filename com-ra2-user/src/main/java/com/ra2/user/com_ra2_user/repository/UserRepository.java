@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -45,7 +46,62 @@ public class UserRepository {
         }
         
     }
+    // Punt 5 . Retorna tots els usuaris
+    public List<User> findAll(){
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, new UserRowMapper());
+    }
+    // Punt 6. Retorna un usuari segons la seva id
+    public User findById(Long id){
+        String sql = "SELECT * FROM users WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+    }
 
+    // Punt 7. Modifica un usuari buscant per la seva id
+    public int updateUser(User user, Long id) {
+        String sql = """
+            UPDATE users
+            SET name = ?, descripcion = ?, email = ?, password = ?, dataUpdated = ?
+            WHERE id = ?
+        """;
+
+        java.time.LocalDateTime now = java.time.LocalDateTime.now(); //Agafa el moment actual per marcarlo com a data de la
+        Timestamp time = Timestamp.valueOf(now);                     //ultima modificacio a la informacio de l'usuari en laa bbdd.
+        return jdbcTemplate.update(sql,
+                user.getName(),
+                user.getDescripcion(),
+                user.getEmail(),
+                user.getPassword(),
+                time,
+                id
+        );
+    }
+
+    // 8. Modifica nomes el nom de un suari nuscat per id i nom
+    public int patchUser(String name, Long id) {
+        String sql = """
+            UPDATE users
+            SET name = ?, dataUpdated = ?
+            WHERE id = ?
+        """;
+
+        java.time.LocalDateTime now = java.time.LocalDateTime.now();
+        Timestamp time = Timestamp.valueOf(now);
+        return jdbcTemplate.update(sql,
+                name,
+                time,
+                id
+        );
+    }
+
+
+    public int deleteUser(Long id){
+        String sql = "DELETE FROM users WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
+
+
+    // Punt 4. Crea un nou usuari
     public int insertUser(User user){
             String sql = """
                     INSERT INTO users(name, descripcion,  email, password, ultimAcces, dataCreated, dataUpdated) VALUES (?,?,?,?,?,?,?);
