@@ -1,8 +1,8 @@
---Elimina la tabla si ja existeix
+-- Elimina la tabla si ja existeix
 DROP TABLE IF EXISTS users;
 
 -- Crear la tabla amb les especificacions indicades
-CREATE TABLE users (
+CREATE TABLE users (  -- CREATE TABLE IF NOT EXISTS users(  --
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,

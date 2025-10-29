@@ -44,16 +44,16 @@ public class UserController {
     }
 
     @GetMapping("/users/{user_id}") // Per exemple: --> http://localhost:8081/api/users/2 <--
-    public ResponseEntity<?> getUserById(@PathVariable Long user_id) {
+    public ResponseEntity<User> getUserById(@PathVariable Long user_id) {
         
+        User user = userRepository.findById(user_id); //Crea un usauari amb l'id proporcionat
 
-        try {
-            User user = userRepository.findById(user_id);
+        if (user != null){   //Comproba si l'usuari s'ha creat. Si no existeix cap usuari amb l'id donat crea un user null
             return ResponseEntity.ok(user); // 200 OK + usuari en JSON al body
-            
-        }catch(EmptyResultDataAccessException e){
-            return ResponseEntity.badRequest().body("ERROR : L'usuari amb id " + user_id + " no existeix"); // Aixo es per si no existeix o no el troba
+        }else{
+            return ResponseEntity.badRequest().body(null); // Retorna aixó si l'user es null
         }
+
     }
 
     // Punt 4. Crea un nou usuari
@@ -89,7 +89,7 @@ public class UserController {
     }
     
     // 8. Modifica nomes el nom de un suari nuscat per id i nom
-    @PatchMapping("/users/{user_id}/name")
+    @PatchMapping("/users/{user_id}/name")  // http://localhost:8081/api/users/2?name=Carol
     public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) {
         User user = userRepository.findById(user_id);
 
