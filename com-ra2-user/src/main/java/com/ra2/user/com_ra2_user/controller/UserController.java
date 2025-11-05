@@ -37,11 +37,11 @@ public class UserController {
     //Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
     @GetMapping("/users")
     public ResponseEntity<List<User>>getUser() {
-        List<User> llista = userRepository.findAll();
+        List<User> llista = userService.findAll();
         if (llista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }else{
-            return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
+            return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
         }
     
     }
@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping("/users/{user_id}") // Per exemple: --> http://localhost:8081/api/users/2 <--
     public ResponseEntity<User> getUserById(@PathVariable Long user_id) {
         
-        User user = userRepository.findById(user_id); //Crea un usauari amb l'id proporcionat
+        User user = userService.findById(user_id); //Crea un usauari amb l'id proporcionat
 
         if (user != null){   //Comproba si l'usuari s'ha creat. Si no existeix cap usuari amb l'id donat crea un user null
             return ResponseEntity.ok(user); // 200 OK + usuari en JSON al body
@@ -62,7 +62,7 @@ public class UserController {
     // Punt 4. Crea un nou usuari
     @PostMapping("/users")
     public ResponseEntity<String> addUser(@RequestBody User user) {
-        int result = userRepository.insertUser(user);
+        int result = userService.insertUser(user);
 
         if(result > 0 ){
             return ResponseEntity.status(HttpStatus.OK).body("El usuario ha sido creado correctamente: " + user.getName().toString());
@@ -77,7 +77,7 @@ public class UserController {
     public ResponseEntity<String> putUser(@PathVariable Long user_id, @RequestBody User user) {
 
         try {
-            userRepository.updateUser(user, user_id);
+            userService.updateUser(user, user_id);
             return ResponseEntity.ok(
                 "El usuario " + user.getName() + " ha sido editado correctamente:\n" +
                 "ID: " + user_id + "\n" +
@@ -94,14 +94,14 @@ public class UserController {
     // 8. Modifica nomes el nom de un suari nuscat per id i nom
     @PatchMapping("/users/{user_id}/name")  // http://localhost:8081/api/users/2?name=Carol
     public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) {
-        User user = userRepository.findById(user_id);
+        User user = userService.findById(user_id);
 
         if(name.length() > 100){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El nom no pot tenir mes de 100 caracters");
         }
 
         try {
-            userRepository.patchUser(name, user_id);
+            userService.patchUser(name, user_id);
             return ResponseEntity.ok(
                 "El usuario " + user.getName() + " ha sido editado correctamente:\n" +
                 "ID: " + user_id + "\n" +
@@ -117,7 +117,7 @@ public class UserController {
     @DeleteMapping("/users/{user_id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long user_id){
         try {
-            userRepository.deleteUser(user_id);
+            userService.deleteUser(user_id);
             return ResponseEntity.ok(
                 "L'usuari amb l'id " + user_id + " ha estat eliminat correctament de la base de dades"
             );
