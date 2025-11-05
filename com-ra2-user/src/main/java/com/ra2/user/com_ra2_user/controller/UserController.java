@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ra2.user.com_ra2_user.model.User;
 import com.ra2.user.com_ra2_user.repository.UserRepository;
+
 import org.springframework.web.bind.annotation.PutMapping;
+
+import com.ra2.user.com_ra2_user.service.UserService;
 
 
 
@@ -29,7 +32,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     //Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
     @GetMapping("/users")
