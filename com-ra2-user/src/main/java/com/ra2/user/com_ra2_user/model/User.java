@@ -8,19 +8,21 @@ public class User {
     private String descripcion;
     private String email;
     private String password;
+    private String image;
     private LocalDateTime ultimAcces;
     private LocalDateTime dataCreated;
     private LocalDateTime dataUpdated;
 
     
 
-    public User(long id, String name, String descripcion, String email, String password, LocalDateTime ultimAcces,
+    public User(long id, String name, String descripcion, String email, String password, String image, LocalDateTime ultimAcces,
             LocalDateTime dataCreated, LocalDateTime dataUpdated) {
         this.id = id;
         this.name = name;
         this.descripcion = descripcion;
         this.email = email;
         this.password = password;
+        this.image = image;
         this.ultimAcces = ultimAcces;
         this.dataCreated = dataCreated;
         this.dataUpdated = dataUpdated;
@@ -55,6 +57,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
     public LocalDateTime getUltimAcces() {
         return ultimAcces;
     }
@@ -84,8 +92,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", descripcion=" + descripcion + ", email=" + email + ", password="
-                + password + ", ultimAcces=" + ultimAcces + ", dataCreated=" + dataCreated + ", dataUpdated="
+        return "User [id= " + id + ", name= " + name + ", descripcion= " + descripcion + ", email= " + email + ", password= "
+                + password + ", imagePath= " + image + ", ultimAcces= " + ultimAcces + ", dataCreated= " + dataCreated + ", dataUpdated= "
                 + dataUpdated + "]";
     }
 

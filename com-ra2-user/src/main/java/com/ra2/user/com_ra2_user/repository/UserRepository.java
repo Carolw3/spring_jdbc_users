@@ -103,14 +103,14 @@ public class UserRepository {
 
     // Punt 4. Crea un nou usuari
     public int insertUser(User user){
-            String sql = """
-                    INSERT INTO users(name, descripcion,  email, password, ultimAcces, dataCreated, dataUpdated) VALUES (?,?,?,?,?,?,?);
-                    """;
+        String sql = """
+                INSERT INTO users(name, descripcion,  email, password, ultimAcces, dataCreated, dataUpdated) VALUES (?,?,?,?,?,?,?);
+                """;
 
-            LocalDateTime now = LocalDateTime.now();
-            Timestamp timestamp = Timestamp.valueOf(now);
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
 
-            return jdbcTemplate.update(sql,
+        return jdbcTemplate.update(sql,
             user.getName(),
             user.getDescripcion(),
             user.getEmail(),
@@ -118,7 +118,12 @@ public class UserRepository {
             null,                 //Es null perque no posarem la data d'ultim acces la primera vegada que ho creem
             timestamp,            //Es la data en el moment de crear
             timestamp            // //Es la data de l'ultim canvi
-            );
-        }
+        );
+    }
+
+    public int updateUserImagePath(Long user_id, String imagePath){
+    String sql = "UPDATE users SET image_path = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, imagePath, user_id);
+    }
 
 }
