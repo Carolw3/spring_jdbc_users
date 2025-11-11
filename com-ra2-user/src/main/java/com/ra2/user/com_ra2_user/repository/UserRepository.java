@@ -31,6 +31,7 @@ public class UserRepository {
             user.setDescripcion(rs.getString("descripcion"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
+            user.setImage(rs.getString("imageP"));
             if(rs.getTimestamp("ultimAcces") != null){
                 user.setUltimAcces(rs.getTimestamp("ultimAcces").toLocalDateTime());
             }
@@ -46,22 +47,22 @@ public class UserRepository {
         }
         
     }
-    // Punt 5 . Retorna tots els usuaris
+    // -1- Punt 5 . Retorna tots els usuaris
     public List<User> findAll(){
         String sql = "SELECT * FROM users";
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
-    // Punt 6. Retorna un usuari segons la seva id
+    // -2- -6- Punt 6. Retorna un usuari segons la seva id
     public User findById(Long id){
         String sql = "SELECT * FROM users WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
     }
 
-    // Punt 7. Modifica un usuari buscant per la seva id
+    // -5- Punt 7. Modifica un usuari buscant per la seva id
     public int updateUser(User user, Long id) {
         String sql = """
             UPDATE users
-            SET name = ?, descripcion = ?, email = ?, password = ?, dataUpdated = ?
+            SET name = ?, descripcion = ?, email = ?, password = ?, imageP = ?, dataUpdated = ?
             WHERE id = ?
         """;
 
@@ -72,12 +73,13 @@ public class UserRepository {
                 user.getDescripcion(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getImage(),
                 time,
                 id
         );
     }
 
-    // 8. Modifica nomes el nom de un suari nuscat per id i nom
+    // -6- 8. Modifica nomes el nom de un suari nuscat per id i nom
     public int patchUser(String name, Long id) {
         String sql = """
             UPDATE users
@@ -94,17 +96,17 @@ public class UserRepository {
         );
     }
 
-
+    //-7-
     public int deleteUser(Long id){
         String sql = "DELETE FROM users WHERE id = ?";
         return jdbcTemplate.update(sql, id);
     }
 
 
-    // Punt 4. Crea un nou usuari
+    // -3- Punt 4. Crea un nou usuari
     public int insertUser(User user){
         String sql = """
-                INSERT INTO users(name, descripcion,  email, password, ultimAcces, dataCreated, dataUpdated) VALUES (?,?,?,?,?,?,?);
+                INSERT INTO users(name, descripcion,  email, password, imageP, ultimAcces, dataCreated, dataUpdated) VALUES (?,?,?,?,?,?,?,?);
                 """;
 
         LocalDateTime now = LocalDateTime.now();
@@ -115,14 +117,16 @@ public class UserRepository {
             user.getDescripcion(),
             user.getEmail(),
             user.getPassword(),
+            user.getImage(),
             null,                 //Es null perque no posarem la data d'ultim acces la primera vegada que ho creem
             timestamp,            //Es la data en el moment de crear
             timestamp            // //Es la data de l'ultim canvi
         );
     }
 
+    //-4-
     public int updateUserImagePath(Long user_id, String imagePath){
-    String sql = "UPDATE users SET image_path = ? WHERE id = ?";
+    String sql = "UPDATE users SET imageP = ? WHERE id = ?";
         return jdbcTemplate.update(sql, imagePath, user_id);
     }
 

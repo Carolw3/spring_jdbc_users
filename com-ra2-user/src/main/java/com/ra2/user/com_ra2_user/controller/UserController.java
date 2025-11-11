@@ -35,7 +35,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
+    //-1-Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
     @GetMapping("/users")
     public ResponseEntity<List<User>>getUser() {
         List<User> llista = userService.findAll();
@@ -47,6 +47,7 @@ public class UserController {
     
     }
 
+    //-2-
     @GetMapping("/users/{user_id}") // Per exemple: --> http://localhost:8081/api/users/2 <--
     public ResponseEntity<User> getUserById(@PathVariable Long user_id) {
         
@@ -60,7 +61,7 @@ public class UserController {
 
     }
 
-    // Punt 4. Crea un nou usuari
+    //-3- Punt 4. Crea un nou usuari
     @PostMapping("/users")
     public ResponseEntity<String> addUser(@RequestBody User user) {
         int result = userService.insertUser(user);
@@ -73,20 +74,20 @@ public class UserController {
         
     }
 
-    // Afegeix una imatge a l'usuari
+    // -4-Afegeix una imatge a l'usuari
     @PostMapping("/users/{user_id}/image")
-    public ResponseEntity<String> addUser(@PathVariable Long user_id, @RequestParam MultipartFile imageFile) throws Exception{
-        int result = userService.insertImage(user_id, imageFile);
+    public ResponseEntity<String> addImageUser(@PathVariable Long user_id, @RequestParam("image") MultipartFile imageFile) throws Exception{
+        String result = userService.insertImage(user_id, imageFile);
 
-        if(result > 0 ){
+        if(result != null ){
             return ResponseEntity.status(HttpStatus.OK).body("La imagen ha sido ingresada correctamente en el usuario con id: " + user_id);
         }else{
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ha avido un error al insertar la imagen");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null );
         }
         
     }
 
-    // Punt 7. Modifica un usuari buscant per la seva id
+    // -5- Punt 7. Modifica un usuari buscant per la seva id
     @PutMapping("/users/{user_id}")
     public ResponseEntity<String> putUser(@PathVariable Long user_id, @RequestBody User user) {
 
@@ -105,7 +106,7 @@ public class UserController {
         }
     }
     
-    // 8. Modifica nomes el nom de un suari nuscat per id i nom
+    // -6- 8. Modifica nomes el nom de un suari nuscat per id i nom
     @PatchMapping("/users/{user_id}/name")  // http://localhost:8081/api/users/2?name=Carol
     public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) {
         User user = userService.findById(user_id);
@@ -127,7 +128,7 @@ public class UserController {
         }
     }
 
-    // 9. Aquest metode eliminara completament un usuari amb l'id que s'ndiqui en el path
+    // -7- 9. Aquest metode eliminara completament un usuari amb l'id que s'ndiqui en el path
     @DeleteMapping("/users/{user_id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long user_id){
         try {
@@ -139,19 +140,6 @@ public class UserController {
             return ResponseEntity.badRequest()
                     .body("ERROR: L'usuari amb id " + user_id + " no existeix");
         }
-    }
-
-    
-    @PatchMapping("/user")
-    public String updateUser(){
-        
-        return "modifica un usuari";
-    }
-    
-    @DeleteMapping("/user")
-    public String deleteUser(){
-        
-        return "Elimina un usuari";
     }
 
 

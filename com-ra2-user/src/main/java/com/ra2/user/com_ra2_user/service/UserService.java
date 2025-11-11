@@ -2,14 +2,15 @@ package com.ra2.user.com_ra2_user.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ra2.user.com_ra2_user.model.User;
@@ -21,57 +22,62 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    //-1-
     public List<User>findAll() {
         List<User> llista = userRepository.findAll();
         return llista;
     }
 
+    //-2- -6-
     public User findById(Long user_id) {
         User user = userRepository.findById(user_id);
         return user;
     }
 
+    //-3-
     public int insertUser(User user) {
         int result = userRepository.insertUser(user);
         return result;
     }
 
+    //-5-
     public void updateUser(User user, Long user_id) {
         userRepository.updateUser(user, user_id);
     }
 
+    //-6-
     public void patchUser(String name, Long user_id) {
         userRepository.patchUser(name, user_id);
     }
 
+    //-7-
     public void deleteUser(Long user_id){
         userRepository.deleteUser(user_id);
     }
 
-    public int insertImage(Long user_id, MultipartFile imageFile) throws Exception{
+    //-4-
+    public String insertImage(Long user_id, MultipartFile imageFile) throws Exception{
         
         //Busca si existeix l'usuari i si no existeix acaba la execució
         User user = userRepository.findById(user_id);
         if (user == null) {
-            return 0;
+            return null;
         }
 
         //Crea la carpeta si aquesta no existeix
-        File folder = new File("src/main/resources/public/images");
-        if (!folder.exists()) {
-            folder.mkdirs();
+        Path folder = Paths.get("src/main/resources/public/images");
+        if (!Files.exists(folder)) {
+            Files.createDirectories(folder);
         }
 
         //Crea un nom per a l'arxiu
-        String fileName = "image_user_" + user_id + ".jpg";
+        String fileName = "image_user_" + user_id + imageFile.getOriginalFilename();
         //Crea el fitxer amb el nom d'abans
-        File destinationFile = new File(folder, fileName);
+        Path destinationFile = folder.resolve(fileName);
 
-        try {
-            imageFile.transferTo(destinationFile);
-        } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
-            return 0; // error al escriure l'arxiu
+        try (InputStream inputStream = imageFile.getInputStream()){
+            //Sobreescriu
+            Files.copy(inputStream,destinationFile, StandardCopyOption.REPLACE_EXISTING);
         }
 
         //Ruta de la imatge
@@ -79,7 +85,12 @@ public class UserService {
 
         //Guarda la imatge a la BBDD
         int result = userRepository.updateUserImagePath(user_id, imagePath);
-        return result;
+        System.out.println(result);
+        if(result == 0){
+            return "Error en la inserció de la imatge";
+        }
+
+        return "/public/" + imagePath;
     }
 
 }
