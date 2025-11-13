@@ -80,7 +80,7 @@ public class UserController {
         String result = userService.insertImage(user_id, imageFile);
 
         if(result != null ){
-            return ResponseEntity.status(HttpStatus.OK).body("La imagen ha sido ingresada correctamente en el usuario con id: " + user_id);
+            return ResponseEntity.status(HttpStatus.OK).body("La imagen del usuario con id " + user_id + ", ha sido ingresada correctamente en : " + result);
         }else{
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null );
         }
@@ -140,6 +140,19 @@ public class UserController {
             return ResponseEntity.badRequest()
                     .body("ERROR: L'usuari amb id " + user_id + " no existeix");
         }
+    }
+
+    // -8- Arxiu csv---- @RequestParam("csv")-> aqui "csv" es la Key
+    @PostMapping("/users/csv")
+    public ResponseEntity<String> addCsv(@RequestParam("csv") MultipartFile csv) throws Exception{
+        String result = userService.insertCsv(csv);
+
+        if(result != null ){
+            return ResponseEntity.status(HttpStatus.OK).body("S'an ingresat correctament " + result + " usuaris");
+        }else{
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null );
+        }
+        
     }
 
 

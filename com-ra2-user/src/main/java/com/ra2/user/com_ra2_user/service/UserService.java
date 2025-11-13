@@ -1,8 +1,10 @@
 package com.ra2.user.com_ra2_user.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,7 +67,7 @@ public class UserService {
         }
 
         //Crea la carpeta si aquesta no existeix
-        Path folder = Paths.get("src/main/resources/public/images");
+        Path folder = Paths.get("private/images");
         if (!Files.exists(folder)) {
             Files.createDirectories(folder);
         }
@@ -90,7 +92,32 @@ public class UserService {
             return "Error en la inserció de la imatge";
         }
 
-        return "/public/" + imagePath;
+        return "/private" + imagePath;
     }
 
+
+
+    //Inserta mes d'un usuari a l'hora amb un csv
+    public String insertCsv(MultipartFile csv) throws Exception{
+        int contaUsuarisIngresats = 0;
+        
+        try(BufferedReader input = new BufferedReader(new InputStreamReader(csv.getInputStream()))){
+            int contaLineas = 0;
+            while(contaLineas > -1){
+                String linea = input.readLine();
+                contaLineas++;
+                if (linea == null){ contaLineas = -1; continue; }
+                if(contaLineas == 1){ continue;} //Salta la primera linea que es la capçelera
+                String[] info = linea.split(",");
+                User user = new User(info[0],info[1],info[2],info[3]);
+                userRepository.insertUser(user);
+                contaUsuarisIngresats++;
+            }
+        }
+        if(contaUsuarisIngresats == 0){
+            return null;
+        }
+
+        return "" + contaUsuarisIngresats;
+    }
 }

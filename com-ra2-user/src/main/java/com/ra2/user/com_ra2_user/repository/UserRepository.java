@@ -130,4 +130,9 @@ public class UserRepository {
         return jdbcTemplate.update(sql, imagePath, user_id);
     }
 
+    public int updateCsvPath(String csvPath){
+        String sql = "UPDATE users SET imageP = ?";
+        return jdbcTemplate.update(sql, csvPath);
+    }
+
 }

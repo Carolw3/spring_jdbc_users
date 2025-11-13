@@ -27,6 +27,16 @@ public class User {
         this.dataCreated = dataCreated;
         this.dataUpdated = dataUpdated;
     }
+
+    public User(String name, String descripcion, String email, String password) {
+        this.name = name;
+        this.descripcion = descripcion;
+        this.email = email;
+        this.password = password;
+        this.ultimAcces = null;
+        this.dataCreated = null;
+        this.dataUpdated = null;
+    }
     
     public User() {
     }
