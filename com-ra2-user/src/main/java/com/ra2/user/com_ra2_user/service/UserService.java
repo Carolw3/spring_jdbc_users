@@ -9,12 +9,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ra2.user.com_ra2_user.model.User;
 import com.ra2.user.com_ra2_user.repository.UserRepository;
 
@@ -23,6 +26,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ObjectMapper mapper;
 
     //-1-
     public List<User>findAll() {
@@ -100,6 +106,8 @@ public class UserService {
     //Inserta mes d'un usuari a l'hora amb un csv
     public String insertCsv(MultipartFile csv) throws Exception{
         int contaUsuarisIngresats = 0;
+        int contaUsuarisDescartats = 0;
+        List<String> errorList = new ArrayList<>();
         
         try(BufferedReader input = new BufferedReader(new InputStreamReader(csv.getInputStream()))){
             int contaLineas = 0;
@@ -109,6 +117,12 @@ public class UserService {
                 if (linea == null){ contaLineas = -1; continue; }
                 if(contaLineas == 1){ continue;} //Salta la primera linea que es la capçelera
                 String[] info = linea.split(",");
+                if(info.length != 4 ){
+                    contaUsuarisDescartats ++;
+                    errorList.add(info[0]);
+
+                    continue;
+                }
                 User user = new User(info[0],info[1],info[2],info[3]);
                 userRepository.insertUser(user);
                 contaUsuarisIngresats++;
@@ -118,6 +132,42 @@ public class UserService {
             return null;
         }
 
-        return "" + contaUsuarisIngresats;
+        return "S'an ingresat correctament " + contaUsuarisIngresats + " usuaris.\n" +
+                "S'han produit " + contaUsuarisDescartats + " errors:\n" +
+                errorList;
+                
     }
+
+    public int insertJson(MultipartFile json){
+        int usersCounter=0;
+
+        try {
+            
+            JsonNode arrel = mapper.readTree(json.getInputStream());
+            JsonNode data = arrel.path("data");
+            int count = data.path("count").asInt();
+            String control = data.path("control").asText();
+            JsonNode users = data.path("users");
+
+            for (JsonNode userF : users) {
+                String name = userF.path("name").asText();
+                String descripcion = userF.path("descripcion").asText();
+                String email = userF.path("email").asText();
+                String password = userF.path("password").asText();
+                
+                User user = new User(name, descripcion, email, password);
+                if (user == null){
+                    continue;
+                }
+                userRepository.insertUser(user);
+                usersCounter++;
+            }
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+        return usersCounter;
+    }
+
 }

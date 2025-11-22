@@ -1,0 +1,26 @@
+{
+  "data": {
+    "count": 3,
+    "control": "OK",
+    "users": [
+      {
+        "name": "Carol" ,
+        "description":"Mujer" ,
+        "email": "carol@gmail.com",
+        "password": "1234"
+      },
+      {
+        "name": "Jordi",
+        "description": "Hombre",
+        "email": "jordi@gmail.com",
+        "password": "4321"
+      },
+      {
+        "name": "Rex",
+        "description": "Perro",
+        "email": "rex@gmail.com",
+        "password": "hUo5Y8PkhdJu5s"
+      }
+    ]
+  }
+}

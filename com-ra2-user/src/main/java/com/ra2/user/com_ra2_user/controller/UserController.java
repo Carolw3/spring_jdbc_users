@@ -148,7 +148,19 @@ public class UserController {
         String result = userService.insertCsv(csv);
 
         if(result != null ){
-            return ResponseEntity.status(HttpStatus.OK).body("S'an ingresat correctament " + result + " usuaris");
+            return ResponseEntity.status(HttpStatus.OK).body( result );
+        }else{
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null );
+        }
+        
+    }
+
+    @PostMapping("/users/upload-json")
+    public ResponseEntity<String> addJson(@RequestParam MultipartFile json) {
+        int result = userService.insertJson(json);
+
+        if(result > 0 ){
+            return ResponseEntity.status(HttpStatus.OK).body( "Usuaris afegits per Json : " + result  );
         }else{
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null );
         }
