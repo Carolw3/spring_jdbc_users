@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.ra2.user.com_ra2_user.logging.CustomLogging;
 import com.ra2.user.com_ra2_user.model.User;
 import com.ra2.user.com_ra2_user.repository.UserRepository;
 
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.ra2.user.com_ra2_user.service.UserService;
-
 
 
 
@@ -34,6 +34,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CustomLogging customLogging;
 
     //-1-Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
     @GetMapping("/users")
