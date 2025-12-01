@@ -20,14 +20,47 @@ public class CustomLogging {
 
     }
     
-    public void error(String className, String metothName, String message){
+    public void error(String className, String metothName, String message) {
+    try {
+        if (!Files.exists(Paths.get(directoryPath))) {
+            Files.createDirectory(Paths.get(directoryPath));
+        }
+        
+        Path path = Paths.get(directoryPath+createFileName());
 
-        Path path = Paths.get(createFileName());
+        LocalDateTime ahora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dataHora = ahora.format(formato);
 
         try (var writer = Files.newBufferedWriter(path,
                                             StandardOpenOption.CREATE,
                                             StandardOpenOption.APPEND)) {
-            writer.write(""+LocalDateTime.now() + " ERROR - " + className+ " - " + metothName + " - " + message);
+            writer.write("["+ dataHora + "] ERROR - " + className+ " - " + metothName + " - " + message+"\n");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        // O usar un logger estándar como fallback
+    }
+}
+
+
+
+    public void info(String className, String metothName, String message) throws IOException{
+
+        if (!Files.exists(Paths.get(directoryPath))) {
+            Files.createDirectory(Paths.get(directoryPath));
+        }
+
+        Path path = Paths.get(directoryPath+createFileName());
+
+        LocalDateTime ahora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dataHora = ahora.format(formato);
+    
+        try (var writer = Files.newBufferedWriter(path,
+                                            StandardOpenOption.CREATE,
+                                            StandardOpenOption.APPEND)) {
+            writer.write("["+ dataHora + "] INFO - " + className+ " - " + metothName + " - " + message+"\n");
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,25 +68,9 @@ public class CustomLogging {
     }
 
 
-
-    public void info(String className, String metothName, String message){
-
-        Path path = Paths.get(createFileName());
-
-        try (var writer = Files.newBufferedWriter(path,
-                                            StandardOpenOption.CREATE,
-                                            StandardOpenOption.APPEND)) {
-            writer.write(""+LocalDateTime.now() + " INFO - " + className+ " - " + metothName + " - " + message);
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public String createFileName(){
+    public String createFileName() {
         LocalDate hoy = LocalDate.now();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String data = hoy.format(formato);
 
         String nomFitxer = "aplicacio-" + data + ".log";

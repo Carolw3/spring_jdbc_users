@@ -1,0 +1,83 @@
+[2025-11-29 00:12:14] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-29 00:12:14] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-29 00:12:27] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-29 00:12:27] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-29 00:13:42] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-29 00:13:42] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-29 00:14:18] INFO - UserService - insertUser - Creant un usuari.
+[2025-11-29 00:14:19] INFO - UserService - insertUser - Usuari creat correctament
+[2025-11-29 00:14:36] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:14:36] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-11-29 00:14:57] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:14:57] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-11-29 00:15:44] INFO - UserService - patchUser - Modificant l'usuari amb id: 9
+[2025-11-29 00:15:44] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-29 00:15:47] INFO - UserService - patchUser - Modificant l'usuari amb id: 9
+[2025-11-29 00:15:47] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-29 00:20:47] INFO - UserService - patchUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:20:47] ERROR - UserService - patchUser - L'usuari amb id: 1 no existeix. 
+[2025-11-29 00:21:02] INFO - UserService - patchUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:21:02] ERROR - UserService - patchUser - L'usuari amb id: 1 no existeix. 
+[2025-11-29 00:23:33] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:23:33] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-11-29 00:23:44] ERROR - UserService - findById - L'usuari amb id 1 no existeix.
+[2025-11-29 00:23:51] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:23:51] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-11-29 00:25:08] ERROR - UserService - findById - L'usuari amb id 1 no existeix.
+[2025-11-29 00:25:15] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:25:15] ERROR - UserService - updateUser - L'usuari amb el nom: 
+[2025-11-29 00:27:30] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:27:30] ERROR - UserService - updateUser - L'usuari amb el nom: 
+[2025-11-29 00:27:43] ERROR - UserService - findById - L'usuari amb id 1 no existeix.
+[2025-11-29 00:27:51] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:27:51] ERROR - UserService - updateUser - L'usuari amb el nom: 
+[2025-11-29 00:29:24] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:29:24] ERROR - UserService - updateUser - L'usuari amb id: 1no existeix.
+[2025-11-29 00:31:59] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-29 00:31:59] ERROR - UserService - updateUser - L'usuari amb id: 1no existeix.
+[2025-11-29 00:37:30] ERROR - UserService - findById - L'usuari amb id 1 no existeix.
+[2025-11-29 00:37:42] INFO - UserService - insertUser - Creant un usuari.
+[2025-11-29 00:37:42] INFO - UserService - insertUser - Usuari creat correctament
+[2025-11-29 00:38:05] INFO - UserService - findById - Consultant l'usuari amb id: 1
+[2025-11-29 00:39:28] INFO - UserService - findById - Consultant l'usuari amb id: 1
+[2025-11-29 00:42:46] INFO - UserService - deleteUser - Borrant l'usuari amb id: 1
+[2025-11-29 00:42:46] ERROR - UserService - deleteUser - L'usuari amb id: 1 no existeix. 
+[2025-11-29 00:43:00] ERROR - UserService - findById - L'usuari amb id 1 no existeix.
+[2025-11-29 00:43:18] INFO - UserService - insertUser - Creant un usuari.
+[2025-11-29 00:43:18] INFO - UserService - insertUser - Usuari creat correctament
+[2025-11-29 00:43:34] INFO - UserService - deleteUser - Borrant l'usuari amb id: 1
+[2025-11-29 00:43:34] INFO - UserService - deleteUser - L'usuari amb id: 1 s'ha borrat correctament.
+[2025-11-29 00:43:41] INFO - UserService - deleteUser - Borrant l'usuari amb id: 1
+[2025-11-29 00:43:41] ERROR - UserService - deleteUser - L'usuari amb id: 1 no existeix. 
+[2025-11-29 01:11:53] INFO - UserService - insertCsv - carregant la informació del fitxer: Family.csv
+[2025-11-29 01:11:53] INFO - UserService - insertCsv - S'han guardat correctament 5 registres i han donat error 0registres.
+[2025-11-29 01:12:04] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors.csv
+[2025-11-29 01:12:46] INFO - UserService - insertCsv - carregant la informació del fitxer: Family.csv
+[2025-11-29 01:13:00] INFO - UserService - insertCsv - carregant la informació del fitxer: Family.csv
+[2025-11-29 01:13:00] INFO - UserService - insertCsv - S'han guardat correctament 5 registres i han donat error 0registres.
+[2025-11-29 01:14:36] INFO - UserService - insertCsv - carregant la informació del fitxer: Family.csv
+[2025-11-29 01:14:36] INFO - UserService - insertCsv - S'han guardat correctament 5 registres i han donat error 0registres.
+[2025-11-29 01:16:52] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors - Full 1.csv
+[2025-11-29 01:17:02] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors.csv
+[2025-11-29 01:24:33] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors.csv
+[2025-11-29 01:24:34] INFO - UserService - insertCsv - S'han guardat correctament 4 registres i han donat error 2registres.
+[2025-11-29 16:18:01] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors.csv
+[2025-11-29 16:18:01] INFO - UserService - insertCsv - S'han guardat correctament 4 registres i han donat error 2 registres.
+[2025-11-29 16:18:34] INFO - UserService - insertCsv - carregant la informació del fitxer: 1-57b34905.jpg
+[2025-11-29 16:20:05] INFO - UserService - insertCsv - carregant la informació del fitxer: Family2Errors.csv
+[2025-11-29 16:20:05] INFO - UserService - insertCsv - S'han guardat correctament 4 registres i han donat error 2 registres.
+[2025-11-29 16:20:11] INFO - UserService - insertCsv - carregant la informació del fitxer: 1-57b34905.jpg
+[2025-11-29 16:22:43] INFO - UserService - insertCsv - carregant la informació del fitxer: ErrorTotal - Full 1.csv
+[2025-11-29 16:22:43] ERROR - UserService - insertCsv - Error en la linea [jordi, carol] del fitxer. Missatge d'<500 INTERNAL_SERVER_ERROR Internal Server Error,Error intern del servidor,[]>
+[2025-11-29 16:24:26] INFO - UserService - deleteUser - Borrant l'usuari amb id: 2
+[2025-11-29 16:24:26] INFO - UserService - deleteUser - L'usuari amb id: 2 s'ha borrat correctament.
+[2025-11-29 16:24:35] INFO - UserService - deleteUser - Borrant l'usuari amb id: 6
+[2025-11-29 16:24:35] ERROR - UserService - deleteUser - L'usuari amb id: 6 no existeix. 
+[2025-11-29 16:50:09] INFO - UserService - insertJson - Carregant la informació del fitxer: jsonUsers.json
+[2025-11-29 16:50:09] INFO - UserService - insertJson - S'han guardat correctament 3 registres i han donat error 0 registres.
+[2025-11-29 17:03:01] INFO - UserService - insertJson - Carregant la informació del fitxer: jsonUsers.json
+[2025-11-29 17:03:02] INFO - UserService - insertJson - S'han guardat correctament 3 registres i han donat error 0 registres.
+[2025-11-29 17:03:48] INFO - UserService - insertImage - Afegint la imatge 1-57b34905.jpg per a l'estudiant amb id 1
+[2025-11-29 17:03:48] INFO - UserService - insertImage - La imatge s'ha guardat correctament. El path es: /images/image_user_11-57b34905.jpg
+[2025-11-29 17:03:58] INFO - UserService - insertImage - Afegint la imatge 1-57b34905.jpg per a l'estudiant amb id 7
+[2025-11-29 17:03:58] ERROR - UserService - insertImage - L'usuari amb id: 7 no existeix. 

@@ -1,5 +1,6 @@
 package com.ra2.user.com_ra2_user.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +53,15 @@ public class UserController {
 
     //-2-
     @GetMapping("/users/{user_id}") // Per exemple: --> http://localhost:8081/api/users/2 <--
-    public ResponseEntity<User> getUserById(@PathVariable Long user_id) {
+    public ResponseEntity<User> getUserById(@PathVariable Long user_id) throws IOException {
         
         User user = userService.findById(user_id); //Crea un usauari amb l'id proporcionat
 
         if (user != null){   //Comproba si l'usuari s'ha creat. Si no existeix cap usuari amb l'id donat crea un user null
+            
             return ResponseEntity.ok(user); // 200 OK + usuari en JSON al body
         }else{
+        
             return ResponseEntity.badRequest().body(null); // Retorna aixó si l'user es null
         }
 
@@ -66,7 +69,7 @@ public class UserController {
 
     //-3- Punt 4. Crea un nou usuari
     @PostMapping("/users")
-    public ResponseEntity<String> addUser(@RequestBody User user) {
+    public ResponseEntity<String> addUser(@RequestBody User user) throws IOException {
         int result = userService.insertUser(user);
 
         if(result > 0 ){
@@ -92,10 +95,11 @@ public class UserController {
 
     // -5- Punt 7. Modifica un usuari buscant per la seva id
     @PutMapping("/users/{user_id}")
-    public ResponseEntity<String> putUser(@PathVariable Long user_id, @RequestBody User user) {
+    public ResponseEntity<String> putUser(@PathVariable Long user_id, @RequestBody User user) throws IOException {
 
-        try {
-            userService.updateUser(user, user_id);
+        int result = userService.updateUser(user, user_id);
+        
+        if(result > 0) {
             return ResponseEntity.ok(
                 "El usuario " + user.getName() + " ha sido editado correctamente:\n" +
                 "ID: " + user_id + "\n" +
@@ -103,7 +107,7 @@ public class UserController {
                 "Descripcion: " + user.getDescripcion() + "\n" +
                 "Email: " + user.getEmail()
             );
-        } catch(EmptyResultDataAccessException e) {
+        } else {
             return ResponseEntity.badRequest()
                     .body("ERROR: L'usuari amb id " + user_id + " no existeix");
         }
@@ -111,21 +115,21 @@ public class UserController {
     
     // -6- 8. Modifica nomes el nom de un suari nuscat per id i nom
     @PatchMapping("/users/{user_id}/name")  // http://localhost:8081/api/users/2?name=Carol
-    public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) {
-        User user = userService.findById(user_id);
+    public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) throws IOException{
+        
 
         if(name.length() > 100){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El nom no pot tenir mes de 100 caracters");
         }
-
-        try {
-            userService.patchUser(name, user_id);
+        int result = userService.patchUser(name, user_id);
+        if(result == 1) {
+            
             return ResponseEntity.ok(
-                "El usuario " + user.getName() + " ha sido editado correctamente:\n" +
+                "El usuario " + name + " ha sido editado correctamente:\n" +
                 "ID: " + user_id + "\n" +
                 "Name: " + name
             );
-        } catch(EmptyResultDataAccessException e) {
+        }else{
             return ResponseEntity.badRequest()
                     .body("ERROR: L'usuari amb id " + user_id + " no existeix");
         }
@@ -133,13 +137,14 @@ public class UserController {
 
     // -7- 9. Aquest metode eliminara completament un usuari amb l'id que s'ndiqui en el path
     @DeleteMapping("/users/{user_id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long user_id){
-        try {
-            userService.deleteUser(user_id);
+    public ResponseEntity<String> deleteUser(@PathVariable Long user_id) throws IOException{
+        
+            int result = userService.deleteUser(user_id);
+        if(result > 0){
             return ResponseEntity.ok(
                 "L'usuari amb l'id " + user_id + " ha estat eliminat correctament de la base de dades"
             );
-        } catch(EmptyResultDataAccessException e) {
+        }else{
             return ResponseEntity.badRequest()
                     .body("ERROR: L'usuari amb id " + user_id + " no existeix");
         }
@@ -159,7 +164,7 @@ public class UserController {
     }
 
     @PostMapping("/users/upload-json")
-    public ResponseEntity<String> addJson(@RequestParam MultipartFile json) {
+    public ResponseEntity<String> addJson(@RequestParam MultipartFile json) throws IOException {
         int result = userService.insertJson(json);
 
         if(result > 0 ){

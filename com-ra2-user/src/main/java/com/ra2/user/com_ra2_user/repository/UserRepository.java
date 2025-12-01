@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.ra2.user.com_ra2_user.logging.CustomLogging;
 import com.ra2.user.com_ra2_user.model.User;
 
 @Repository
@@ -19,6 +20,9 @@ public class UserRepository {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    CustomLogging customLogging;
 
 
     private static final class UserRowMapper implements RowMapper<User>{
@@ -55,7 +59,12 @@ public class UserRepository {
     // -2- -6- Punt 6. Retorna un usuari segons la seva id
     public User findById(Long id){
         String sql = "SELECT * FROM users WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+        try {
+            return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
 
     // -5- Punt 7. Modifica un usuari buscant per la seva id

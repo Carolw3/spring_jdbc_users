@@ -1,0 +1,49 @@
+[2025-11-28 23:11:57] INFO - UserService - insertUser - Creant un estudiant.
+[2025-11-28 23:11:57] INFO - UserService - insertUser - Estudiant creat correctament
+[2025-11-28 23:13:56] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28 23:13:56] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28 23:14:15] INFO - UserService - updateUser - Modificant l'estudiant amb id: 1
+[2025-11-28 23:14:15] INFO - UserService - updateUser - Estudiant modificat correctament
+[2025-11-28 23:16:04] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28 23:16:15] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28 23:16:15] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28T23:17:35.625037700] ERROR - UserService - findById - L'estudiant amb id 66 no existeix.
+[2025-11-28T23:21:52.782506500] ERROR - UserService - findById - L'estudiant amb id 66 no existeix.
+[2025-11-28 23:21:52] INFO - UserService - patchUser - Modificant l'estudiant amb id: 66
+[2025-11-28 23:21:52] INFO - UserService - patchUser - L'estudiant amb id: 66 no existeix.
+[2025-11-28T23:22:01.942277600] ERROR - UserService - findById - L'estudiant amb id 66 no existeix.
+[2025-11-28 23:22:01] INFO - UserService - patchUser - Modificant l'estudiant amb id: 66
+[2025-11-28 23:22:01] INFO - UserService - patchUser - L'estudiant amb id: 66 no existeix.
+[2025-11-28 23:27:12] ERROR - UserService - findById - L'estudiant amb id 66 no existeix.
+[2025-11-28 23:27:12] INFO - UserService - patchUser - Modificant l'estudiant amb id: 66
+[2025-11-28 23:27:12] INFO - UserService - patchUser - L'estudiant amb id: 66 no existeix.
+[2025-11-28 23:34:44] ERROR - UserService - findById - L'estudiant amb id 66 no existeix.
+[2025-11-28 23:34:44] INFO - UserService - patchUser - Modificant l'estudiant amb id: 66
+[2025-11-28 23:34:44] INFO - UserService - patchUser - Estudiant modificat correctament.
+[2025-11-28 23:39:27] ERROR - UserService - findById - L'usuari amb id 66 no existeix.
+[2025-11-28 23:39:27] INFO - UserService - patchUser - Modificant l'usuari amb id: 66
+[2025-11-28 23:39:27] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:41:20] ERROR - UserService - findById - L'usuari amb id 66 no existeix.
+[2025-11-28 23:41:20] INFO - UserService - patchUser - Modificant l'usuari amb id: 66
+[2025-11-28 23:41:20] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:43:50] ERROR - UserService - findById - L'usuari amb id 66 no existeix.
+[2025-11-28 23:45:24] INFO - UserService - patchUser - Modificant l'usuari amb id: 66
+[2025-11-28 23:45:32] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:49:59] INFO - UserService - insertUser - Creant un usuari.
+[2025-11-28 23:49:59] INFO - UserService - insertUser - Usuari creat correctament
+[2025-11-28 23:51:54] INFO - UserService - findById - Consultant l'usuari amb id: 1
+[2025-11-28 23:51:54] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28 23:52:18] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-11-28 23:52:18] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-11-28 23:52:50] INFO - UserService - findById - Consultant l'usuari amb id: 1
+[2025-11-28 23:52:50] INFO - UserService - patchUser - Modificant l'usuari amb id: 1
+[2025-11-28 23:52:50] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:53:03] ERROR - UserService - findById - L'usuari amb id 11 no existeix.
+[2025-11-28 23:53:03] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-28 23:53:03] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:55:36] ERROR - UserService - findById - L'usuari amb id 11 no existeix.
+[2025-11-28 23:55:36] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-28 23:55:36] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-11-28 23:56:31] ERROR - UserService - findById - L'usuari amb id 11 no existeix.
+[2025-11-28 23:56:31] INFO - UserService - patchUser - Modificant l'usuari amb id: 11
+[2025-11-28 23:56:31] INFO - UserService - patchUser - Usuari modificat correctament.

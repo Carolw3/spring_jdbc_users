@@ -1,0 +1,4 @@
+[2025-11-28T09:13:12.219905600] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28T09:13:12.221917] INFO - UserService - findById - Consultant l'estudiant amb id: 1
+[2025-11-28T09:15:04.054887100] ERROR - UserService - findById - L'estudiant amb id 2 no existeix.
+[2025-11-28T09:15:04.057444900] ERROR - UserService - findById - L'estudiant amb id 2 no existeix.

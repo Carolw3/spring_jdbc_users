@@ -1,0 +1,4 @@
+[2025-11-28 23:46:40] ERROR - UserService - findById - L'usuari amb id 66 no existeix.
+[2025-11-28 23:47:32] ERROR - UserService - findById - L'usuari amb id 66 no existeix.
+[2025-11-28 23:47:54] INFO - UserService - patchUser - Modificant l'usuari amb id: 66
+[2025-11-28 23:48:14] INFO - UserService - patchUser - Usuari modificat correctament.
