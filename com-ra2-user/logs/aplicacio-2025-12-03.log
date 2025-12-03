@@ -1,0 +1,31 @@
+[2025-12-03 19:54:41] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 19:54:41] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 19:54:56] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 19:54:56] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 19:55:13] ERROR - UserService - findById - No hi ha usuaris registrats
+[2025-12-03 19:55:32] INFO - UserService - insertUser - Creant un usuari.
+[2025-12-03 19:55:32] INFO - UserService - insertUser - Usuari creat correctament
+[2025-12-03 19:56:09] INFO - UserService - updateUser - Modificant l'usuari amb id: 1
+[2025-12-03 19:56:09] INFO - UserService - updateUser - Usuari modificat correctament
+[2025-12-03 19:56:28] INFO - UserService - updateUser - Modificant l'usuari amb id: 9
+[2025-12-03 19:56:28] ERROR - UserService - updateUser - L'usuari amb id: 9 no existeix.
+[2025-12-03 19:57:23] INFO - UserService - patchUser - Modificant l'usuari amb id: 1
+[2025-12-03 19:57:23] INFO - UserService - patchUser - Usuari modificat correctament.
+[2025-12-03 19:57:37] INFO - UserService - findById - Consultant l'usuari amb id: 1
+[2025-12-03 19:58:19] INFO - UserService - insertJson - Carregant la informació del fitxer: jsonUsers.json
+[2025-12-03 19:58:19] INFO - UserService - insertJson - S'han guardat correctament 3 registres i han donat error 0 registres.
+[2025-12-03 19:58:42] INFO - UserService - insertCsv - Carregant la informació del fitxer: ErrorTotal - Full 1.csv
+[2025-12-03 19:58:42] ERROR - UserService - insertCsv - Error en la linea [jordi, carol] del fitxer. Missatge d'error: <500 INTERNAL_SERVER_ERROR Internal Server Error,Error intern del servidor,[]>
+[2025-12-03 19:59:01] INFO - UserService - insertCsv - Carregant la informació del fitxer: Family2Errors.csv
+[2025-12-03 19:59:18] INFO - UserService - insertCsv - Carregant la informació del fitxer: Family2Errors.csv
+[2025-12-03 19:59:18] INFO - UserService - insertCsv - S'han guardat correctament 4 registres i han donat error 2 registres.
+[2025-12-03 19:59:38] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 19:59:38] INFO - UserService - findById - Consultant tots els usuaris.
+[2025-12-03 20:00:09] INFO - UserService - insertImage - Afegint la imatge Divina.png per a l'estudiant amb id 2
+[2025-12-03 20:00:09] INFO - UserService - insertImage - La imatge s'ha guardat correctament. El path es: /images/image_user_2Divina.png
+[2025-12-03 20:00:33] INFO - UserService - insertImage - Afegint la imatge Divina.png per a l'estudiant amb id 10
+[2025-12-03 20:00:33] ERROR - UserService - insertImage - L'usuari amb id: 10 no existeix.
+[2025-12-03 20:00:44] INFO - UserService - deleteUser - Borrant l'usuari amb id: 10
+[2025-12-03 20:00:44] ERROR - UserService - deleteUser - L'usuari amb id: 10 no existeix.
+[2025-12-03 20:00:47] INFO - UserService - deleteUser - Borrant l'usuari amb id: 1
+[2025-12-03 20:00:47] INFO - UserService - deleteUser - L'usuari amb id: 1 s'ha borrat correctament.

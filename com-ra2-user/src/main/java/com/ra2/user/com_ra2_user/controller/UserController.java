@@ -41,7 +41,7 @@ public class UserController {
 
     //-1-Retorna un allista Json amb tots els usuaris i si no hi ha usuaris dona error
     @GetMapping("/users")
-    public ResponseEntity<List<User>>getUser() {
+    public ResponseEntity<List<User>>getUser() throws IOException {
         List<User> llista = userService.findAll();
         if (llista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -113,7 +113,7 @@ public class UserController {
         }
     }
     
-    // -6- 8. Modifica nomes el nom de un suari nuscat per id i nom
+    // -6- 8. Modifica nomes el nom de un suari buscat per id i nom
     @PatchMapping("/users/{user_id}/name")  // http://localhost:8081/api/users/2?name=Carol
     public ResponseEntity<String> changeNameUser(@PathVariable Long user_id, @RequestParam() String name) throws IOException{
         

@@ -37,8 +37,20 @@ public class UserService {
     CustomLogging customLogging;
 
     //-1-
-    public List<User>findAll() {
+    public List<User>findAll() throws IOException {
         List<User> llista = userRepository.findAll();
+
+        if(llista.size() < 1){
+            customLogging.error(
+                "UserService",
+                "findById",
+                "No hi ha usuaris registrats");
+        }else{
+            customLogging.info(
+                "UserService",
+                "findById",
+                "Consultant tots els usuaris." );
+        }
 
         return llista;
     }
